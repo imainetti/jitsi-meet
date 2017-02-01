@@ -1,6 +1,7 @@
 /* global APP */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import PageReloadOverlay from './PageReloadOverlay';
 import SuspendedOverlay from './SuspendedOverlay';
 import UserMediaPermissionsOverlay from './UserMediaPermissionsOverlay';
@@ -79,6 +80,21 @@ class OverlayContainer extends Component {
     }
 
     /**
+     * React Component method that executes once component is updated.
+     *
+     * @inheritdoc
+     * @returns {void}
+     * @protected
+     */
+    componentDidUpdate() {
+        // FIXME: Temporary workaround until everything is moved to react.
+        APP.UI.overlayVisible
+            = (this.props._connectionEstablished && this.props._haveToReload)
+            || this.props._suspendDetected
+            || this.props._mediaPermissionPromptVisible;
+    }
+
+    /**
      * Implements React's {@link Component#render()}.
      *
      * @inheritdoc
@@ -86,12 +102,6 @@ class OverlayContainer extends Component {
      * @public
      */
     render() {
-        // FIXME: Temporary workaround until everything is moved to react.
-        APP.UI.overlayVisible
-            = (this.props._connectionEstablished && this.props._haveToReload)
-            || this.props._suspendDetected
-            || this.props._mediaPermissionPromptVisible;
-
         if (this.props._connectionEstablished && this.props._haveToReload) {
             return (
                 <PageReloadOverlay

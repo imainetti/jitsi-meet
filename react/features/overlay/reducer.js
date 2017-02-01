@@ -1,18 +1,20 @@
 /* global JitsiMeetJS */
-import {
-    ReducerRegistry,
-    setStateProperty,
-    setStateProperties
-} from '../base/redux';
-import {
-    SUSPEND_DETECTED,
-    MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED
-} from './actionTypes';
 import { CONFERENCE_FAILED } from '../base/conference';
 import {
     CONNECTION_ESTABLISHED,
     CONNECTION_FAILED
 } from '../base/connection';
+import {
+    ReducerRegistry,
+    setStateProperty,
+    setStateProperties
+} from '../base/redux';
+
+import {
+    MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED,
+    SUSPEND_DETECTED
+} from './actionTypes';
+
 const logger = require('jitsi-meet-logger').getLogger(__filename);
 
 /**
@@ -55,9 +57,9 @@ function _conferenceFailed(state, action) {
     if (action.error === ConferenceErrors.FOCUS_LEFT
         || action.error === ConferenceErrors.VIDEOBRIDGE_NOT_AVAILABLE) {
         return setStateProperties(state, {
-            'haveToReload': true,
-            'isNetworkFailure': false,
-            'reason': action.errorMessage
+            haveToReload: true,
+            isNetworkFailure: false,
+            reason: action.errorMessage
         });
     }
 
@@ -99,10 +101,10 @@ function _connectionFailed(state, action) {
         // From all of the cases above only CONNECTION_DROPPED_ERROR
         // is considered a network type of failure
         return setStateProperties(state, {
-            'haveToReload': true,
-            'isNetworkFailure':
+            haveToReload: true,
+            isNetworkFailure:
                 action.error === ConnectionErrors.CONNECTION_DROPPED_ERROR,
-            'reason': `xmpp-conn-dropped: ${action.errorMessage}`
+            reason: `xmpp-conn-dropped: ${action.errorMessage}`
         });
     }
     }
@@ -123,8 +125,8 @@ function _connectionFailed(state, action) {
  */
 function _mediaPermissionPromptVisibilityChanged(state, action) {
     return setStateProperties(state, {
-        'mediaPermissionPromptVisible': action.isVisible,
-        'browser': action.browser
+        mediaPermissionPromptVisible: action.isVisible,
+        browser: action.browser
     });
 }
 

@@ -1,6 +1,7 @@
 /* global interfaceConfig */
-import AbstractOverlay from './AbstractOverlay';
 import React from 'react';
+
+import AbstractOverlay from './AbstractOverlay';
 
 /**
  * Implements a React Component for overlay with guidance how to proceed with

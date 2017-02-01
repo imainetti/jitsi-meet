@@ -1,5 +1,6 @@
-import AbstractReloadableOverlay from './AbstractReloadableOverlay';
 import React from 'react';
+
+import AbstractReloadableOverlay from './AbstractReloadableOverlay';
 
 /**
  * Implements a React Component for suspended overlay. Shown when suspended
@@ -15,7 +16,8 @@ export default class SuspendedOverlay extends AbstractReloadableOverlay {
      */
     _renderOverlayContent() {
         const btnClass = 'inlay__button button-control button-control_primary';
-        const onClickHandler = this._reconnectNow;
+
+        /* eslint-disable react/jsx-handler-names */
 
         return (
             <div className = 'inlay'>
@@ -28,7 +30,7 @@ export default class SuspendedOverlay extends AbstractReloadableOverlay {
                     className = { btnClass }
                     data-i18n = 'suspendedoverlay.rejoinKeyTitle'
                     id = 'rejoin'
-                    onClick = { onClickHandler } />
+                    onClick = { this._reconnectNow } />
             </div>
         );
     }

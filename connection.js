@@ -4,8 +4,10 @@ const logger = require("jitsi-meet-logger").getLogger(__filename);
 import AuthHandler from './modules/UI/authentication/AuthHandler';
 import jitsiLocalStorage from './modules/util/JitsiLocalStorage';
 
-import { connectionEstablished, connectionFailed }
-    from './react/features/base/connection';
+import {
+    connectionEstablished,
+    connectionFailed
+} from './react/features/base/connection';
 
 const ConnectionEvents = JitsiMeetJS.events.connection;
 const ConnectionErrors = JitsiMeetJS.errors.connection;

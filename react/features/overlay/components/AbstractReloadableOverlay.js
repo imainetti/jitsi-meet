@@ -7,25 +7,6 @@ import AbstractOverlay from './AbstractOverlay';
  */
 export default class AbstractReloadableOverlay extends AbstractOverlay {
     /**
-     * Initializes a new AbstractOverlay instance.
-     *
-     * @param {Object} props - The read-only properties with which the new
-     * instance is to be initialized.
-     * @public
-     */
-    constructor(props) {
-        super(props);
-
-        // Bind event handlers so they are only bound once for every instance.
-
-        /**
-         * @protected
-         * @type {Function}
-         */
-        this._reconnectNow = this._reconnectNow.bind(this);
-    }
-
-    /**
      * Reloads the page.
      *
      * @returns {void}
